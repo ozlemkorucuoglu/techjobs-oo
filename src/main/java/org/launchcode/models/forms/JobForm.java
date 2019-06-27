@@ -1,9 +1,6 @@
 package org.launchcode.models.forms;
 
-import org.launchcode.models.CoreCompetency;
-import org.launchcode.models.Employer;
-import org.launchcode.models.Location;
-import org.launchcode.models.PositionType;
+import org.launchcode.models.*;
 import org.launchcode.models.data.JobData;
 
 import javax.validation.constraints.NotNull;
@@ -22,11 +19,19 @@ public class JobForm {
     @NotNull
     private int employerId;
 
-    /*
-        TODO #3 - Included other fields needed to create a job,
-        with correct validation attributes and display names.
-        Don't forget to add getters and setters
-     */
+
+    // TODO #3 START - Included other fields needed to create a job,
+    // with correct validation attributes and display names.
+    // Don't forget to add getters and setters
+
+
+    private String employer;
+    private String location;
+    private String skill;
+    private String positionType;
+
+
+    // TODO #3 END- Included other fields needed to create a job,
 
     private ArrayList<Employer> employers;
     private ArrayList<Location> locations;
@@ -37,9 +42,15 @@ public class JobForm {
 
         JobData jobData = JobData.getInstance();
 
-        /*
-            TODO #4 - populate the other ArrayList collections needed in the view
-        */
+
+        // TODO #4 START - populate the other ArrayList collections needed in the view
+
+        locations = jobData.getLocations().findAll();
+        coreCompetencies = jobData.getCoreCompetencies().findAll();
+        positionTypes = jobData.getPositionTypes().findAll();
+
+
+        //TODO #4 END - populate the other ArrayList collections needed in the view
 
         employers = jobData.getEmployers().findAll();
 
@@ -92,4 +103,40 @@ public class JobForm {
     public void setPositionTypes(ArrayList<PositionType> positionTypes) {
         this.positionTypes = positionTypes;
     }
+
+
+    // MY CODE STARTS
+    public String getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(String employer) {
+        this.employer = employer;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    public String getPositionType() {
+        return positionType;
+    }
+
+    public void setPositionType(String positionType) {
+        this.positionType = positionType;
+    }
+
+    // MY CODE ENDS
 }
